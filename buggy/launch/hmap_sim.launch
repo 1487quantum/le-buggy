@@ -10,7 +10,7 @@
   <arg name="scan_topic" default="scan"/>
   <arg name="map_size" default="6000"/>
 
-  <arg name="bag_filename" default="$(find buggy)/bag/road1.bag"/>
+  <arg name="bag_filename" default="$(find buggy)/bag/corridor.bag"/>
 
 <!-- Run rosbag -->
  <param name="/use_sim_time" value="true" />

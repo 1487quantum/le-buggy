@@ -8,9 +8,9 @@
   <arg name="pub_map_odom_transform" default="true"/>
   <arg name="scan_subscriber_queue_size" default="5"/>
   <arg name="scan_topic" default="scan"/>
-  <arg name="map_size" default="4096"/>
+  <arg name="map_size" default="6000"/>
 
-  <arg name="bag_filename" default="$(find buggy)/bag/corridor.bag"/>
+  <arg name="bag_filename" default="$(find buggy)/bag/road1.bag"/>
 
 <!-- Run rosbag -->
  <param name="/use_sim_time" value="true" />
@@ -35,6 +35,9 @@
     <param name="pub_map_odom_transform" value="$(arg pub_map_odom_transform)"/>
 
     <!-- Map size / start point -->
+<!--    [Origin for road1.bag (x,y): 0.55, 0.2] -->
+<!--    [Origin for corridor.bag (x,y): 0.2, 0.3] -->
+
     <param name="map_resolution" value="0.050"/>
     <param name="map_size" value="$(arg map_size)"/>
     <param name="map_start_x" value="0.2"/>
@@ -42,11 +45,12 @@
     <param name="map_multi_res_levels" value="2" />
 
     <!-- Map update parameters -->
+    <param name="map_pub_period" value="5"/>
     <param name="update_factor_free" value="0.4"/>
     <param name="update_factor_occupied" value="0.9" />
     <param name="map_update_distance_thresh" value="0.4"/>
-    <param name="map_update_angle_thresh" value="0.06" />
-    <param name="laser_min_dist" value = "0.2" />
+    <param name="map_update_angle_thresh" value="0.1" />
+    <param name="laser_max_dist" value = "25.0" />
     <param name="laser_z_min_value" value = "-1.0" />
     <param name="laser_z_max_value" value = "1.0" />
 

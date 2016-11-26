@@ -1,0 +1,152 @@
+<robot name="buggy_2d">
+  <material name="orange">
+    <color rgba="1.0 0.5 0.2 1" />
+  </material>
+<material name="white">
+    <color rgba="1 1 1 1" />
+  </material>
+  <material name="dk_gray">
+    <color rgba="0.2 0.2 0.2 1" />
+  </material>
+<material name="lt_gray">
+    <color rgba="0.5 0.5 0.5 1" />
+  </material>
+  <material name="green">
+    <color rgba="0.2 0.4 0.2 1" />
+  </material>
+
+  <link name="imu_link">
+    <visual>
+      <geometry>
+        <box size="0.057 0.042 0.023" />
+      </geometry>
+      <material name="orange" />
+    </visual>
+  </link>
+
+  <link name="laser_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.09" radius="0.07" />
+      </geometry>
+      <material name="dk_gray" />
+    </visual>
+  </link>
+
+ <link name="beam">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 1.1"/>
+      </geometry>
+      <material name="lt_gray" />
+    </visual>
+  </link>
+
+ <link name="seat">
+    <visual>
+      <geometry>
+        <box size="1 1 0.3"/>
+      </geometry>
+      <material name="lt_gray" />
+    </visual>
+  </link>
+
+<link name="base_link">
+<visual>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <box size="2.20 1.00 0.3" />
+      </geometry>
+      <material name="white" />
+    </visual>
+  </link>
+
+
+<link name="left_front_wheel">
+    <visual>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.25" radius="0.2"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+  <joint name="left_front_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="left_front_wheel"/>
+    <origin rpy="0 0 0" xyz="0.83 0.41 -0.15"/>
+  </joint>
+
+<link name="right_front_wheel">
+    <visual>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.25" radius="0.2"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+  <joint name="right_front_wheel" type="fixed">
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <parent link="base_link"/>
+    <child link="right_front_wheel"/>
+    <origin rpy="0 0 0" xyz="0.83 -0.41 -0.15"/>
+  </joint>
+
+<link name="left_back_wheel">
+    <visual>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.25" radius="0.2"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+  <joint name="left_back_wheel" type="fixed">
+    <axis rpy="0 0 0" xyz="0 1 0"/>
+    <parent link="base_link"/>
+    <child link="left_back_wheel"/>
+    <origin rpy="0 0 0" xyz="-0.83 0.41 -0.15"/>
+  </joint>
+
+<link name="right_back_wheel">
+    <visual>
+      <origin rpy="1.57075 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.25" radius="0.2"/>
+      </geometry>
+      <material name="black"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </visual>
+  </link>
+  <joint name="right_back_wheel" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_back_wheel"/>
+    <origin rpy="0 0 0" xyz="-0.83 -0.41 -0.15"/>
+  </joint>
+
+<joint name="seat_link_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="seat" />
+    <origin xyz="-0.43 0 0.3" />
+  </joint>
+<joint name="beam_link_joint" type="fixed">
+    <parent link="seat" />
+    <child link="beam" />
+    <origin xyz="0 0 0.7" />
+  </joint>
+  <joint name="imu_link_joint" type="fixed">
+    <parent link="beam" />
+    <child link="imu_link" />
+      <origin rpy="-1.57075 1.57075 0" xyz="0 0.036 -0.42" />
+  </joint>
+  <joint name="laser_link_joint" type="fixed">
+    <parent link="beam" />
+    <child link="laser_link" />
+    <origin xyz="0.07 0 0.46" />
+  </joint>
+
+</robot>

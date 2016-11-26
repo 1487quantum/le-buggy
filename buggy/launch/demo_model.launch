@@ -1,0 +1,5 @@
+<!-- Launch model + RVIZ-->
+<launch>
+  <include file="$(find buggy)/launch/model.launch" />
+  <node name="rviz" pkg="rviz" type="rviz"/>
+</launch>

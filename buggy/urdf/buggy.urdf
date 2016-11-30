@@ -1,4 +1,4 @@
-<robot name="buggy_2d">
+<robot name="buggy_v2">
   <material name="orange">
     <color rgba="1.0 0.5 0.2 1" />
   </material>

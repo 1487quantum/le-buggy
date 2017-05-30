@@ -1,7 +1,7 @@
 <!-- Launch model -->
 <launch>
   <param name="robot_description"
-      textfile="$(find buggy)/urdf/buggy.urdf" />
+      textfile="$(find buggy_description)/urdf/buggy.urdf" />
   <node name="robot_state_publisher" pkg="robot_state_publisher"
       type="robot_state_publisher" />
 	<node name="rviz" pkg="rviz" type="rviz"/>

@@ -1,7 +1,0 @@
-<!-- Launch model + RVIZ-->
-<launch>
-  <arg name="rvizconfig" default="$(find buggy)/rviz/hmap_sim.rviz" />
-
-  <include file="$(find buggy)/launch/model.launch" />
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"/>
-</launch>

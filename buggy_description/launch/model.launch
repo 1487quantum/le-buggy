@@ -1,8 +1,13 @@
 <!-- Launch model -->
 <launch>
+
+  <arg name="use_rviz" default="true"/>
+
   <param name="robot_description"
       textfile="$(find buggy_description)/urdf/buggy.urdf" />
   <node name="robot_state_publisher" pkg="robot_state_publisher"
       type="robot_state_publisher" />
-	<node name="rviz" pkg="rviz" type="rviz"/>
+<group if="$(arg use_rviz)">
+ <node name="rviz" pkg="rviz" type="rviz"/>
+</group>
 </launch>

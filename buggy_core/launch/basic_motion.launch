@@ -1,0 +1,18 @@
+<launch>
+ <arg name="k_port" default="/dev/ttyUSB0" />
+ <arg name="ard_port" default="/dev/ttyUSB1" />
+
+<!-- Ard Serial -->
+<node pkg="rosserial_python" name="ard_serial" type="serial_node.py">
+    <param name="port" value="$(arg ard_port)" />
+</node>
+
+<!-- Steering -->
+<include file="$(find buggy_control)/launch/steering.launch">
+ <arg name="controller" value="gamepad.yaml" />
+</include>
+
+<node pkg="kangaroo_driver" name="kangaroo_driver" type="kangaroo_driver_node_loop">
+    <param name="port" value="$(arg k_port)" />
+</node>
+</launch>

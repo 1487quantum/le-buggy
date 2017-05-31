@@ -1,8 +1,11 @@
 <launch>
 <!-- Import model -->
 <include file="$(find buggy_description)/launch/model.launch">
-    <arg name="use_rviz" value="false"/>
+    <arg name="use_rviz" value="true"/>
 </include>
+
+<!-- Basic motion -->
+<include file="$(find buggy_core)/launch/basic_motion.launch"/>
 
  <!-- Lidar -->
  <arg name="host" default="192.168.1.105" />
@@ -17,7 +20,7 @@
   <arg name="pub_map_odom_transform" default="true"/>
   <arg name="scan_subscriber_queue_size" default="5"/>
   <arg name="scan_topic" default="scan"/>
-<arg name="map_size" default="2048"/>
+<arg name="map_size" default="5000"/>
  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
 
     <!-- Frame names -->

@@ -1,18 +1,30 @@
 <launch>
- <arg name="k_port" default="/dev/ttyUSB0" />
- <arg name="ard_port" default="/dev/ttyUSB1" />
+  <arg name="k_port" default="/dev/ttyUSB1" />
+  <arg name="ard_port" default="/dev/ttyUSB0" />
 
-<!-- Ard Serial -->
-<node pkg="rosserial_python" name="ard_serial" type="serial_node.py">
+  <!-- Ard Serial -->
+  <node pkg="rosserial_python" name="ard_serial" type="serial_node.py">
     <param name="port" value="$(arg ard_port)" />
-</node>
+    <remap from="cmd_vel" to="cmd_vel_out"/>
+  </node>
 
-<!-- Steering -->
-<include file="$(find buggy_control)/launch/steering.launch">
- <arg name="controller" value="gamepad.yaml" />
-</include>
+  <!-- Steering -->
+  <include file="$(find buggy_control)/launch/steering.launch">
+    <arg name="controller" value="gamepad.yaml" />
+    <remap from="cmd_vel" to="joy_vel"  />
+  </include>
 
-<node pkg="kangaroo_driver" name="kangaroo_driver" type="kangaroo_driver_node_loop">
+  <node pkg="kangaroo_driver" name="kangaroo_driver" type="kangaroo_driver_node_loop">
     <param name="port" value="$(arg k_port)" />
-</node>
+    <remap from="cmd_vel" to="cmd_vel_out"/>
+  </node>
+
+  <!-- vel_cmd multiplexer -->
+    <arg name="config_locks"  default="$(find buggy_core)/config/mux/twist_mux_locks.yaml"/>
+    <arg name="config_topics" default="$(find buggy_core)/config/mux/twist_mux_topics.yaml"/>
+    <node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
+      <!--remap from="cmd_vel_out" to="cmd_velF"/-->
+      <rosparam file="$(arg config_locks)"  command="load"/>
+      <rosparam file="$(arg config_topics)" command="load"/>
+    </node>
 </launch>

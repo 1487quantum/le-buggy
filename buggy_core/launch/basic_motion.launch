@@ -1,6 +1,6 @@
 <launch>
-  <arg name="k_port" default="/dev/ttyUSB1" />
-  <arg name="ard_port" default="/dev/ttyUSB0" />
+  <arg name="kangaroo_port" default="/dev/ttyUSB1" />
+  <arg name="ard_port" default="/dev/ttyUSB2" />
 
   <!-- Ard Serial -->
   <node pkg="rosserial_python" name="ard_serial" type="serial_node.py">
@@ -15,7 +15,7 @@
   </include>
 
   <node pkg="kangaroo_driver" name="kangaroo_driver" type="kangaroo_driver_node_loop">
-    <param name="port" value="$(arg k_port)" />
+    <param name="port" value="$(arg kangaroo_port)" />
     <remap from="cmd_vel" to="cmd_vel_out"/>
   </node>
 

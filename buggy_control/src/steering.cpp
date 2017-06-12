@@ -10,10 +10,10 @@ void JoyCallback( const sensor_msgs::Joy::ConstPtr& js)
 {
 	cmd_vel.linear.x  = (js->buttons[0]==0) ? js->axes[1] : 0.0; //to/fro
 	cmd_vel.linear.y  = (1+js->axes[3]) / 2; //+/-
-	cmd_vel.angular.z = js->axes[2]; //rotate left/right 
+	cmd_vel.angular.z = js->axes[2]; //rotate left/right
 
 	ROS_INFO("cmd_vel: %.3f, %.3f, %.3f", cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
-	
+
 	jt_pub.publish( cmd_vel );
 }
 
@@ -25,6 +25,6 @@ int main(int argc, char** argv)
     sub=nh.subscribe<sensor_msgs::Joy>("joy",10, JoyCallback);
     
 	ros::spin();
-	
+
 	return 0;
 }

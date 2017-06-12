@@ -3,6 +3,7 @@
 type: 'gamepad'
 linearX: 1
 angularZ: 3
+cancelGoal: 2
 brake:  4
 unlock: 5
 home  : 10
